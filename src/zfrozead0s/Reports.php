@@ -17,7 +17,7 @@ class Reports extends PluginBase {
     private Config $reportsConfig;
 
     public function onEnable(): void {
-        // Cargar el archivo de configuración de reportes
+        
         @mkdir($this->getDataFolder());
         $this->saveResource("config.yml");
         $this->reportsConfig = new Config($this->getDataFolder() . "reports.yml", Config::YAML);
@@ -53,36 +53,31 @@ class Reports extends PluginBase {
         }
         return false;
     }
-
-    // Crear el formulario para reportar
+    
     private function openReportUI(Player $player): void {
         $form = new CustomForm(function (Player $player, ?array $data) {
             if ($data === null) {
                 return;
             }
 
-            // Validación del formulario
             if (empty($data[1]) || empty($data[2])) {
                 $player->sendMessage(TextFormat::RED . "Please fill all fields.");
                 return;
             }
 
-            $reportedPlayer = $data[1]; // Jugador a reportar
-            $reason = $data[2]; // Razón del reporte
-
-            // Verificar si el jugador existe
+            $reportedPlayer = $data[1]; 
+            $reason = $data[2]; 
+            
             $target = Server::getInstance()->getPlayerByPrefix($reportedPlayer);
             if ($target === null) {
                 $player->sendMessage(TextFormat::RED . "Player not found.");
                 return;
             }
 
-            // Guardar el reporte
             $this->addReport($player->getName(), $reportedPlayer, $reason);
             $player->sendMessage(TextFormat::GREEN . "Your report has been successfully submitted.");
         });
 
-        // Crear los campos del formulario
         $form->setTitle("Report a Player");
         $form->addLabel("Please fill the details to report a player.");
         $form->addInput("Player to report:", "Enter player's name");
