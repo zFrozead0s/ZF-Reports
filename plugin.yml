@@ -1,0 +1,21 @@
+name: ZF-Reports
+main: zfrozead0s\Reports
+version: 1.0-beta
+api: 5.0.0
+author: zFrozead0s
+commands:
+  report:
+    description: Report a player for misbehavior via UI
+    usage: "/report"
+    permission: "zfreports.use"
+  reports:
+    description: View the list of reports in a UI
+    usage: "/reports list"
+    permission: "zfreports.admin"
+permissions:
+  zfreports.use:
+    description: Allows players to report others
+    default: true
+  zfreports.admin:
+    description: Allows admins to view and manage reports
+    default: op
