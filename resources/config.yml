@@ -1,0 +1,9 @@
+# Prefijo para los mensajes del plugin
+prefix: "[ZF-Reports] "
+
+# Mensajes personalizados
+messages:
+  report_success: "Your report has been successfully submitted."
+  report_failed: "Incorrect usage. Use /report <player> <reason>."
+  report_received: "Thank you for your report!"
+  no_reports: "There are no pending reports."
