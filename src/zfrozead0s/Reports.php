@@ -10,17 +10,21 @@ use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat;
 use jojoe77777\FormAPI\CustomForm;
 use jojoe77777\FormAPI\SimpleForm;
+use CortexPE\DiscordWebhookAPI\Message;
+use CortexPE\DiscordWebhookAPI\Webhook;
+use CortexPE\DiscordWebhookAPI\Embed;
 use pocketmine\Server;
 
 class Reports extends PluginBase {
 
     private Config $reportsConfig;
+    private string $webhookUrl;
 
     public function onEnable(): void {
-        
         @mkdir($this->getDataFolder());
         $this->saveResource("config.yml");
         $this->reportsConfig = new Config($this->getDataFolder() . "reports.yml", Config::YAML);
+        $this->webhookUrl = $this->getConfig()->get("webhook_url");
 
         $this->getLogger()->info(TextFormat::GREEN . "ZF-Reports has been enabled!");
     }
@@ -53,7 +57,7 @@ class Reports extends PluginBase {
         }
         return false;
     }
-    
+
     private function openReportUI(Player $player): void {
         $form = new CustomForm(function (Player $player, ?array $data) {
             if ($data === null) {
@@ -65,9 +69,9 @@ class Reports extends PluginBase {
                 return;
             }
 
-            $reportedPlayer = $data[1]; 
-            $reason = $data[2]; 
-            
+            $reportedPlayer = $data[1];
+            $reason = $data[2];
+
             $target = Server::getInstance()->getPlayerByPrefix($reportedPlayer);
             if ($target === null) {
                 $player->sendMessage(TextFormat::RED . "Player not found.");
@@ -76,6 +80,8 @@ class Reports extends PluginBase {
 
             $this->addReport($player->getName(), $reportedPlayer, $reason);
             $player->sendMessage(TextFormat::GREEN . "Your report has been successfully submitted.");
+
+            $this->sendReportToDiscord($player->getName(), $reportedPlayer, $reason);
         });
 
         $form->setTitle("Report a Player");
@@ -126,5 +132,27 @@ class Reports extends PluginBase {
         ];
         $this->reportsConfig->setAll($reports);
         $this->reportsConfig->save();
+    }
+
+    private function sendReportToDiscord(string $reporter, string $reported, string $reason): void {
+        if (empty($this->webhookUrl)) {
+            $this->getLogger()->warning("Discord webhook URL is not set in the config.yml.");
+            return;
+        }
+
+        $webhook = new Webhook($this->webhookUrl);
+        $msg = new Message();
+
+        $embed = new Embed();
+        $embed->setTitle("New Report");
+        $embed->setDescription("A new player report has been submitted.");
+        $embed->addField("Reported Player", $reported);
+        $embed->addField("Reporter", $reporter);
+        $embed->addField("Reason", $reason);
+        $embed->setColor(0xFF0000);
+        $embed->setTimestamp();
+
+        $msg->addEmbed($embed);
+        $webhook->send($msg);
     }
 }
