@@ -150,7 +150,7 @@ class Reports extends PluginBase {
         $embed->addField("Reporter", $reporter);
         $embed->addField("Reason", $reason);
         $embed->setColor(0xFF0000);
-        $embed->setTimestamp();
+        $embed->setTimestamp(0);
 
         $msg->addEmbed($embed);
         $webhook->send($msg);
