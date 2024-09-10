@@ -1,7 +1,10 @@
 # Prefijo para los mensajes del plugin
 prefix: "[ZF-Reports] "
 
-# Mensajes personalizados
+# Webhook URL for Discord
+webhook_url: "url"
+
+# Messages
 messages:
   report_success: "Your report has been successfully submitted."
   report_failed: "Incorrect usage. Use /report <player> <reason>."
