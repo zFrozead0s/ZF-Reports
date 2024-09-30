@@ -5,5 +5,5 @@ branches:
 projects:
   ZF-Reports:
     path: ""
-    icon: image.png
+    icon: "icon.png"
 ...
