@@ -17,3 +17,5 @@ To see the admin list and the reports
 # Configuration
 
 Configurable in resources/config.yml or plugin_data/ZF-Reports/config.yml
+
+![image](https://github.com/user-attachments/assets/606440c6-61fc-43dc-adbc-2d61c79bb0c7)
