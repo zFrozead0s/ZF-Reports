@@ -1,10 +1,11 @@
 {
     "name": "zfrozead0s/zf-reports",
+    "type": "pocketmine-plugin",
     "require": {
         "php": "^8.0",
-        "pocketmine/pocketmine-mp": "^5.0.0",
-        "jojoe77777/formapi": "dev-main",
-        "cortexpe/discordwebhook": "dev-main"
+        "pocketmine/pocketmine-mp": "^5.7.0", // Última versión estable de PMMP 5
+        "jojoe77777/formapi": "dev-pm5", // Rama específica para PM5
+        "cortexpe/discordwebhook": "dev-master"
     },
     "repositories": [
         {
