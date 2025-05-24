@@ -3,8 +3,8 @@
     "type": "pocketmine-plugin",
     "require": {
         "php": "^8.0",
-        "pocketmine/pocketmine-mp": "^5.7.0", // Última versión estable de PMMP 5
-        "jojoe77777/formapi": "dev-pm5", // Rama específica para PM5
+        "pocketmine/pocketmine-mp": "^5.7.0",
+        "jojoe77777/formapi": "dev-pm5",
         "cortexpe/discordwebhook": "dev-master"
     },
     "repositories": [
