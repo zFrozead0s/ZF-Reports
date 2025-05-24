@@ -1,0 +1,25 @@
+{
+    "name": "zfrozead0s/zf-reports",
+    "require": {
+        "php": "^8.0",
+        "pocketmine/pocketmine-mp": "^5.0.0",
+        "jojoe77777/formapi": "dev-main",
+        "cortexpe/discordwebhook": "dev-main"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/jojoe77777/FormAPI"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/CortexPE/DiscordWebhookAPI"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "ZFReports\\": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
