@@ -26,11 +26,6 @@ class Reports extends PluginBase {
         $this->reportsConfig = new Config($this->getDataFolder() . "reports.yml", Config::YAML);
         $this->webhookUrl = $this->getConfig()->get("webhook_url");
 
-        $this->getLogger()->info(TextFormat::GREEN . "ZF-Reports has been enabled!");
-    }
-
-    public function onDisable(): void {
-        $this->getLogger()->info(TextFormat::RED . "ZF-Reports has been disabled.");
     }
 
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool {
