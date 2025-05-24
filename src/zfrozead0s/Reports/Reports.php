@@ -1,6 +1,6 @@
 <?php
 
-namespace zfrozead0s;
+namespace zfrozead0s\Reports;
 
 use pocketmine\plugin\PluginBase;
 use pocketmine\player\Player;
