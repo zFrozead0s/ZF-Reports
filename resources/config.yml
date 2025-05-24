@@ -1,4 +1,4 @@
-# Prefijo para los mensajes del plugin
+# Prefix
 prefix: "[ZF-Reports] "
 
 # Webhook URL for Discord
